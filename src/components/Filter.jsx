@@ -1,7 +1,16 @@
 import React from "react";
+import { Button } from "@mui/material";
 
-const Filter = () => {
-  return <div>This is the filter</div>;
+const Filter = ({ filters, clearFilters }) => {
+  return (
+    <div>
+      {filters.map((f) => (
+        <Button value={f} onClick={clearFilters}>
+          {f}
+        </Button>
+      ))}
+    </div>
+  );
 };
 
 export default Filter;
