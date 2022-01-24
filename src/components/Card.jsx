@@ -13,23 +13,58 @@ const Card = ({ company, handleFilter }) => {
 
   return (
     <Grid item>
-      <Paper elevation={4}>
+      <Paper elevation={4} sx={{ px: 2 }}>
         <Grid
           container
-          direction={{ xs: "column", sm: "row" }}
-          justifyContent={{ xs: "center", sm: "flex-start" }}
-          alignItems={{ xs: "flex-start", sm: "center" }}
+          direction={{ xs: "column", md: "row" }}
+          justifyContent={{ xs: "center", md: "flex-start" }}
+          alignItems={{ xs: "flex-start", md: "center" }}
         >
-          <Grid item sm={1}>
-            <Avatar src={require(`../images/${company.logo}`)}></Avatar>
+          <Grid item md={1}>
+            <Avatar
+              src={require(`../images/${company.logo}`)}
+              sx={{
+                height: "auto",
+                width: "100%",
+                maxWidth: 80,
+                mt: { xs: -4, md: 0 },
+              }}
+            ></Avatar>
           </Grid>
-          <Grid item sm={4}>
+          <Grid item md={4}>
             <CardDetail company={company} />
           </Grid>
-          <Grid item sm={7}>
-            <Box display="flex" flexWrap="wrap" justifyContent="flex-end">
+          <Box
+            component="span"
+            sx={{
+              display: { xs: "block", md: "none" },
+              width: "100%",
+              borderTop: "1px solid hsl(180, 8%, 52%)",
+              mb: 2,
+            }}
+          ></Box>
+          <Grid item md={7}>
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              justifyContent={{ md: "flex-end" }}
+            >
               {tags.map((tag) => (
-                <Button value={tag} onClick={handleFilter}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  value={tag}
+                  onClick={handleFilter}
+                  color="info"
+                  sx={{
+                    ":hover": {
+                      color: "hsl(180, 52%, 96%)",
+                      background: "hsl(180, 29%, 50%)",
+                    },
+                    mr: 2,
+                    mb: { xs: 2, md: 0 },
+                  }}
+                >
                   {tag}
                 </Button>
               ))}

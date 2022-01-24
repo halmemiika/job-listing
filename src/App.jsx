@@ -10,7 +10,7 @@ const App = () => {
   const [companies, setCompanies] = useState(data);
 
   useEffect(() => {
-    const filteredCompanies = companies.filter((company) => {
+    const filteredCompanies = data.filter((company) => {
       const tags = [company.level, company.role].concat(
         company.tools,
         company.languages
@@ -18,7 +18,7 @@ const App = () => {
       return filters.every((f) => tags.includes(f));
     });
     setCompanies(filteredCompanies);
-  }, [filters]); //eslint-disable-line
+  }, [filters]);
 
   const handleFilter = (e) => {
     const newTag = e.target.value;
@@ -38,7 +38,10 @@ const App = () => {
     setFilters(newFilters);
   };
 
-  console.log(filters);
+  const clearAllFilters = () => {
+    setFilters([]);
+  };
+
   return (
     <CssBaseline>
       <div className="banner"></div>
@@ -48,10 +51,14 @@ const App = () => {
           direction="column"
           justifyContent="center"
           alignItems="stretch"
-          spacing={2}
+          spacing={{ xs: 8, md: 2 }}
         >
           {filters.length ? (
-            <Filter filters={filters} clearFilters={clearFilters} />
+            <Filter
+              filters={filters}
+              clearFilters={clearFilters}
+              clearAllFilters={clearAllFilters}
+            />
           ) : null}
           {companies.map((company) => (
             <Card
