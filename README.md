@@ -27,3 +27,6 @@ Users should be able to:
 - React
 - Material-Ui
 
+### Differences to the challenge
+
+- Some changes to the original design, different hover states for the filter buttons as well as slight modifications to the card contents 
